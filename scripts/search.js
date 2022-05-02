@@ -8,7 +8,8 @@ import { appendNews, get } from "./fetch.js";
 let news = (e) => {
     if(e.key == "Enter"){
         let query = document.getElementById("search_input").value
-        get(query).then((data)=>{
+        const url =`https://masai-mock-api.herokuapp.com/news?q=${query}`
+        get(url).then((data)=>{
             let container = document.getElementById("results")
             container.innerHTML = null
             appendNews(data.articles,container)
