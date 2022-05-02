@@ -8,14 +8,14 @@ document.getElementById("navbar").innerHTML = navbar()
 
 
 import { appendNews, get } from "./fetch.js";
-var arr1 = JSON.parse(localStorage.getItem("news1")) || [];
+
 let news = (e) => {
     if(e.key == "Enter"){
         let query = document.getElementById("search_input").value
         get(query).then((data)=>{
             let container = document.getElementById("results")
             container.innerHTML = null
-            arr1.push(appendNews(data.articles,container))
+            appendNews(data.articles,container)
             window.location.href = "search.html"
         })
         
