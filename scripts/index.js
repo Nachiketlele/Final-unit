@@ -12,7 +12,8 @@ import { appendNews, get } from "./fetch.js";
 let news = (e) => {
     if(e.key == "Enter"){
         let query = document.getElementById("search_input").value
-        get(query).then((data)=>{
+        const url = `https://masai-mock-api.herokuapp.com/news?q=${query}`
+        get(url).then((data)=>{
             let container = document.getElementById("results")
             container.innerHTML = null
             appendNews(data.articles,container)
@@ -47,16 +48,16 @@ let sidebar = document.getElementById("sidebar").children
 
 async function search(){
     let id = this.id
-  
-        try{
-            let res = await fetch(`https://masai-mock-api.herokuapp.com/news/top-headlines?country=${id}`)
-            let data = await res.json()
-            console.log(data.articles)
-            append(data.articles)
-        }
-        catch(err){
-            console.log(err)
-        }
+  const url = `https://masai-mock-api.herokuapp.com/news/top-headlines?country=${id}`
+
+
+  get(url).then((data)=>{
+      let container = document.getElementById("results")
+      container.innerHTML = null
+      appendNews(data.articles,container)
+    
+  })
+      
 
     }
 

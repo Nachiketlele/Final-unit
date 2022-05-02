@@ -1,6 +1,6 @@
-let get = async (query) =>{
+let get = async (url) =>{
     try{
-        let res = await fetch(`https://masai-mock-api.herokuapp.com/news?q=${query}`)
+        let res = await fetch(url)
         let data = await res.json()
         return data
     }
